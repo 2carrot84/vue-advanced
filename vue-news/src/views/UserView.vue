@@ -1,6 +1,10 @@
 <template>
   <div>
-    <user-profile></user-profile>
+    <user-profile :info="userInfo">
+      <div slot="username">{{userInfo.id}}</div>
+      <span slot="time">Joined {{userInfo.created}}, </span>
+      <span slot="karma">{{userInfo.karma}}</span>
+    </user-profile>
   </div>
 </template>
 
@@ -8,6 +12,11 @@
 import UserProfile from "@/components/UserProfile";
 export default {
   name: "UserView",
+  computed: {
+    userInfo() {
+      return this.$store.state.user;
+    }
+  },
   created() {
     const userName = this.$route.params.id;
     this.$store.dispatch('FETCH_USER', userName);

@@ -4,8 +4,11 @@
       <i class="fa-solid fa-user"></i>
     </div>
     <div class="user-description">
-      <div>{{ userInfo.id }}</div>
-      <div class="time">{{ userInfo.created }}</div>
+      <slot name="username"></slot>
+      <div class="time">
+        <slot name="time"></slot>
+        <slot name="karma"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -13,12 +16,9 @@
 <script>
 export default {
   name: "UserProfile",
-  computed: {
-    userInfo() {
-      return this.$store.state.user;
-    }
-  },
-
+  props: {
+    info: Object,
+  }
 }
 </script>
 
