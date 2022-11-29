@@ -1,16 +1,19 @@
 <template>
   <div>
-    <ListItem></ListItem>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
+
 import ListItem from "@/components/ListItem";
 
 export default {
-  name: "AskView",
+  name: "ListView",
   components: {ListItem},
-};
+}
 </script>
+
 <style scoped>
+
 </style>

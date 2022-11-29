@@ -8,11 +8,9 @@ Vue.use(Vuex);
 // 여러 컴포넌트간 공유되는 데이터 속성
 export const store = new Vuex.Store({
     state: {
-        news: [],
-        ask: [],
-        jobs: [],
         user: {},
         item: {},
+        list: [],
     },
     getters: {
         fetchedJobs(state) {
