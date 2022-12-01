@@ -29,7 +29,7 @@ export default {
   name: "ListItem",
   computed: {
     ItemList() {
-      return this.$store.state.list.data;
+      return this.$store.state.list;
     }
   }
 }

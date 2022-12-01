@@ -1,31 +1,35 @@
 import {fetchItemInfo, fetchList, fetchUserInfo} from "@/api";
 
 export default {
-    FETCH_USER({ commit }, username) {
-        fetchUserInfo(username)
-            .then(response => {
-                commit('SET_USER', response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            })
+    async FETCH_USER({ commit }, username) {
+        let response = await fetchUserInfo(username);
+        commit('SET_USER', response.data);
+        return response;
     },
-    FETCH_ITEM({commit}, id) {
-        fetchItemInfo(id)
-            .then(response => {
-                commit('SET_ITEM', response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            })
+    async FETCH_ITEM({commit}, id) {
+        let response = await fetchItemInfo(id);
+        commit('SET_ITEM', response.data);
+        return response;
     },
-    FETCH_LIST({ commit }, pageName) {
-        fetchList(pageName)
-            .then(data => {
-                commit('SET_LIST', data);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }
+    // Promise
+    // FETCH_LIST({ commit }, pageName) {
+    //     return fetchList(pageName)
+    //         .then(data => {
+    //             commit('SET_LIST', data.data);
+    //             return data;
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         })
+    // },
+    // async & await
+    async FETCH_LIST({ commit }, pageName) {
+        try {
+            let response = await fetchList(pageName);
+            commit('SET_LIST', response.data);
+            return response;
+        } catch (e) {
+            console.error(e);
+        }
+    },
 }
